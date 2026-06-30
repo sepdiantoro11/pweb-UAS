@@ -49,7 +49,7 @@
         }
 
         .sidebar-brand img {
-            width: 200px; /* Proporsi ukuran logo pada sidebar */
+            width: 200px;
             height: auto;
             object-fit: contain;
         }
@@ -78,15 +78,15 @@
         }
 
         .sidebar-link i {
-            font-size: 1.5rem; /* Menjaga icon berukuran cukup besar dan tegas */
+            font-size: 1.5rem;
             margin-right: 20px;
             display: inline-block;
             vertical-align: middle;
         }
 
-        /* Status Menu Aktif Khusus 'Pelanggan' */
+
         .sidebar-item.active .sidebar-link {
-            background-color: rgba(255, 255, 255, 0.12); /* Efek penanda menu aktif */
+            background-color: rgba(255, 255, 255, 0.12);
             border-left: 5px solid #ffffff; 
             padding-left: 20px; 
         }
@@ -96,10 +96,8 @@
             color: #ffffff;
         }
 
-        /* --- Sisi Kanan: Main Content Panel --- */
         .main-content {
             flex-grow: 1;
-            /* Background Gradient linier dari putih ke cyan cerah dari kiri-atas ke kanan-bawah */
             background: linear-gradient(135deg, #ffffff 60%, #46fde1 100%);
             padding: 30px 40px;
             display: flex;
@@ -107,7 +105,6 @@
             position: relative;
         }
 
-        /* Bar Atas / Header Tempat Kancing Logout Berada */
         .content-header {
             display: flex;
             justify-content: flex-end;
@@ -117,7 +114,7 @@
         }
 
         .btn-logout {
-            background-color: #4ec2e0; /* Warna cyan tombol logout sesuai gambar */
+            background-color: #4ec2e0;
             color: #ffffff;
             font-weight: 500;
             font-size: 1rem;
@@ -133,20 +130,18 @@
             color: #ffffff;
         }
 
-        /* Judul Tengah Atas Card */
         .page-title {
             text-align: center;
-            color: #3873e0; /* Warna biru royal teks utama */
+            color: #3873e0;
             font-weight: 600;
             font-size: 1.85rem;
             margin-bottom: 25px;
         }
 
-        /* Kotak Card Utama Formulir */
         .form-card {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); /* Shadow luar tipis */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid #e2e8f0;
             width: 100%;
             max-width: 850px;
@@ -154,7 +149,6 @@
             padding: 40px 50px;
         }
 
-        /* Komposisi Flexbox Baris Formulir Horizontal */
         .form-group-row {
             display: flex;
             align-items: center;
@@ -164,9 +158,9 @@
 
         .label-field {
             font-weight: 600;
-            color: #3b71ca; /* Warna biru tulisan label sesuai skema */
+            color: #3b71ca;
             font-size: 1.05rem;
-            width: 160px; /* Batas statis sisi kiri agar kotak isian sejajar vertikal */
+            width: 160px;
             flex-shrink: 0;
         }
 
@@ -186,7 +180,6 @@
             outline: 0;
         }
 
-        /* Area Penyematan Tombol Simpan Tengah */
         .button-action-area {
             display: flex;
             justify-content: center;
@@ -195,7 +188,7 @@
         }
 
         .btn-simpan {
-            background-color: #4ec2e0; /* Warna kancing cyan sesuai gambar */
+            background-color: #4ec2e0;
             color: #ffffff;
             font-weight: 500;
             font-size: 1.1rem;
@@ -211,17 +204,15 @@
             transform: translateY(-1px);
         }
 
-        /* Pesan Validasi Error Di Bawah Kolom Isian */
         .error-validation {
             color: #dc3545;
             font-size: 0.85rem;
             margin-top: -15px;
             margin-bottom: 15px;
-            padding-left: 160px; /* Menyesuaikan ketukan kosong label */
+            padding-left: 160px;
             width: 100%;
         }
 
-        /* Aturan Responsifitas Layar Kecil */
         @media (max-width: 991px) {
             body {
                 flex-direction: column;
@@ -271,26 +262,21 @@
 </head>
 <body>
 
-    <!-- SIDEBAR KIRI (Statis Konstan Sesuai Desain Macam Gambar Utama) -->
     <div class="sidebar">
         <div class="sidebar-brand">
-            <!-- Pemuatan Gambar Logo Projek Menggunakan base_url() -->
             <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Logo Deluxe Laundry">
         </div>
         <ul class="sidebar-menu">
-            <!-- Menu Pelanggan (Berstatus Active) -->
             <li class="sidebar-item active">
                 <a href="<?php echo site_url('pelanggan'); ?>" class="sidebar-link">
                     <i class="bi bi-person-circle"></i> Pelanggan
                 </a>
             </li>
-            <!-- Menu Daftar Cucian -->
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-mailbox"></i> Daftar Cucian
                 </a>
             </li>
-            <!-- Menu Riwayat -->
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
                     <i class="bi bi-clock-history"></i> Riwayat
@@ -299,29 +285,23 @@
         </ul>
     </div>
 
-    <!-- MAIN CONTENT UTAMA (Kanan) -->
     <div class="main-content">
-        
-        <!-- Area Tombol Keluar / Kanan Atas -->
+
         <div class="content-header">
             <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
         </div>
 
-        <!-- Judul Tengah -->
         <h2 class="page-title">Masukkan Data Pelanggan</h2>
 
-        <!-- Tampilan Alert Flashdata Pengingat Berhasil Simpan Data Transaksi -->
         <?php if($this->session->flashdata('message')): ?>
             <div style="max-width: 850px; width: 100%; margin: 0 auto 15px auto;">
                 <?php echo $this->session->flashdata('message'); ?>
             </div>
         <?php endif; ?>
 
-        <!-- Form Elemen Box Utama -->
         <div class="form-card">
             <?php echo form_open('pelanggan'); ?>
 
-                <!-- Field 1: Nama Pelanggan -->
                 <div class="form-group-row">
                     <label class="label-field" for="nama">Nama:</label>
                     <input type="text" class="input-field" id="nama" name="nama" value="<?php echo set_value('nama'); ?>" autocomplete="off">
@@ -330,7 +310,6 @@
                     <div class="error-validation"><?php echo form_error('nama', '', ''); ?></div>
                 <?php endif; ?>
 
-                <!-- Field 2: Nomor HP / WA -->
                 <div class="form-group-row">
                     <label class="label-field" for="nomor_hp">Nomor HP:</label>
                     <input type="text" class="input-field" id="nomor_hp" name="nomor_hp" value="<?php echo set_value('nomor_hp'); ?>" autocomplete="off">
@@ -339,7 +318,6 @@
                     <div class="error-validation"><?php echo form_error('nomor_hp', '', ''); ?></div>
                 <?php endif; ?>
 
-                <!-- Field 3: Alamat Domisili -->
                 <div class="form-group-row">
                     <label class="label-field" for="alamat">Alamat:</label>
                     <input type="text" class="input-field" id="alamat" name="alamat" value="<?php echo set_value('alamat'); ?>" autocomplete="off">
@@ -348,7 +326,6 @@
                     <div class="error-validation"><?php echo form_error('alamat', '', ''); ?></div>
                 <?php endif; ?>
 
-                <!-- Field 4: Pilihan Dropdown Paket Laundry Otomatis Database -->
                 <div class="form-group-row">
                     <label class="label-field" for="paket">Paket:</label>
                     <select class="input-field form-select" id="paket" name="paket">
@@ -364,7 +341,6 @@
                     <div class="error-validation"><?php echo form_error('paket', '', ''); ?></div>
                 <?php endif; ?>
 
-                <!-- Field 5: Input Kuantitas Berat Cucian -->
                 <div class="form-group-row">
                     <label class="label-field" for="berat">Berat Cucian:</label>
                     <input type="text" class="input-field" id="berat" name="berat" value="<?php echo set_value('berat'); ?>" placeholder="Contoh: 3 atau 3.5" autocomplete="off">
@@ -373,7 +349,6 @@
                     <div class="error-validation"><?php echo form_error('berat', '', ''); ?></div>
                 <?php endif; ?>
 
-                <!-- Tombol Submit / Simpan Tengah -->
                 <div class="button-action-area">
                     <button type="submit" class="btn-simpan">Simpan</button>
                 </div>
@@ -383,7 +358,6 @@
 
     </div>
 
-    <!-- Bootstrap 5 JavaScript Bundle dengan Popper CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

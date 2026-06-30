@@ -20,7 +20,6 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            /* Background Gradient: Putih di atas bertahap ke Cyan cerah di bawah sesuai gambar */
             background: linear-gradient(180deg, #ffffff 0%, #ffffff 35%, #2bfdd6 100%);
             min-height: 100vh;
             display: flex;
@@ -31,21 +30,20 @@
 
         .login-container {
             width: 100%;
-            max-width: 780px; /* Menjaga proporsi lebar elemen seperti gambar */
+            max-width: 780px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* Bagian Atas / Header Judul dan Logo */
         .header-section {
             text-align: center;
             margin-bottom: 25px;
         }
 
         .header-section h1 {
-            color: #3873e0; /* Warna biru tulisan 'Selamat Datang Di' */
+            color: #3873e0;
             font-weight: 600;
             font-size: 2rem;
             margin-bottom: 15px;
