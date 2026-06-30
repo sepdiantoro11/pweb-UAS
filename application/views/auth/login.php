@@ -51,7 +51,7 @@
         }
 
         .logo-img {
-            width: 230px; /* Dimensi logo disesuaikan agar proporsional */
+            width: 230px;
             height: auto;
             object-fit: contain;
         }
@@ -60,13 +60,12 @@
         .login-card {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Shadow halus di sekeliling card */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid #e2e8f0;
             width: 100%;
             padding: 45px 50px;
         }
 
-        /* Form Layout: Penyelarasan Label dan Input Box */
         .form-group-custom {
             margin-bottom: 22px;
             display: flex;
@@ -75,9 +74,9 @@
 
         .label-custom {
             font-weight: 600;
-            color: #3b71ca; /* Warna biru untuk teks 'Nama:', 'Email:', 'Password:' */
+            color: #3b71ca;
             font-size: 1.1rem;
-            width: 130px; /* Lebar statis label agar input field di kanannya sejajar lurus */
+            width: 130px;
             flex-shrink: 0;
         }
 
@@ -97,28 +96,25 @@
             outline: 0;
         }
 
-        /* Wrapper Alert */
         .alert-container {
             width: 100%;
             margin-bottom: 15px;
         }
 
-        /* Container Dua Tombol Sejajar */
         .button-group-custom {
             display: flex;
             justify-content: center;
-            gap: 25px; /* Jarak antar tombol sesuai gambar */
+            gap: 25px;
             margin-top: 35px;
-            padding-left: 20px; /* Offset sedikit agar seimbang dengan posisi form */
+            padding-left: 20px;
         }
 
-        /* Tombol Dasar */
         .btn-custom {
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             font-size: 1.1rem;
             padding: 10px 0;
-            width: 180px; /* Ukuran kedua tombol seragam */
+            width: 180px;
             border-radius: 8px;
             border: none;
             color: #ffffff;
@@ -127,7 +123,6 @@
             text-align: center;
         }
 
-        /* Tombol Sebelah Kiri: Daftar (Biru Royal) */
         .btn-daftar {
             background-color: #3b71ca;
         }
@@ -137,7 +132,6 @@
             transform: translateY(-1px);
         }
 
-        /* Tombol Sebelah Kanan: Masuk (Cyan Segar) */
         .btn-masuk {
             background-color: #4ec2e0;
         }
@@ -147,16 +141,14 @@
             transform: translateY(-1px);
         }
 
-        /* Validasi Error Teks Kecil di Bawah Input */
         .error-text {
             color: #dc3545;
             font-size: 0.85rem;
             margin-top: 4px;
-            padding-left: 130px; /* Menyesuaikan agar sejajar dengan kolom input kotak */
+            padding-left: 130px;
             width: 100%;
         }
 
-        /* Penanganan Responsif Mobile Viewport */
         @media (max-width: 576px) {
             body {
                 background: linear-gradient(180deg, #ffffff 0%, #2bfdd6 100%);

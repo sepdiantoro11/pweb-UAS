@@ -34,7 +34,6 @@ class Auth extends CI_Controller {
         } else {
             $email = $this->input->post('email', TRUE);
 
-            // Periksa kecocokan email unik
             if ($this->Kasir_model->check_email_exists($email)) {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tersebut sudah terdaftar!</div>');
                 $this->load->view('auth/login');
@@ -63,7 +62,6 @@ class Auth extends CI_Controller {
             $email    = $this->input->post('email', TRUE);
             $password = $this->input->post('password');
 
-            // Cari kasir berdasarkan nama_kasir dan email menggunakan query builder di model
             $user = $this->Kasir_model->login_check($nama, $email);
 
             if ($user) {
