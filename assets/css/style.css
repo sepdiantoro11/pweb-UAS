@@ -1,0 +1,73 @@
+body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(180deg,#ffffff 0%,#eafcff 55%,#63efd8 100%);
+    font-family:'Poppins',sans-serif;
+}
+
+.hero-card{
+    background:#ffffff;
+    border-radius:24px;
+    padding:50px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.hero-title{
+    color:#3B6FEA;
+    font-size:42px;
+    font-weight:700;
+}
+
+.hero-tagline{
+    color:#2E5FD1;
+    font-size:24px;
+    font-weight:600;
+    margin-top:15px;
+}
+
+.hero-desc{
+    color:#6b7280;
+    font-size:17px;
+    margin-top:10px;
+    line-height:1.7;
+}
+
+.btn-primary{
+    background:#3B6FEA;
+    border:none;
+    border-radius:12px;
+    padding:12px;
+    font-weight:600;
+}
+
+.btn-primary:hover{
+    background:#315fd0;
+}
+
+.btn-outline-primary{
+    border:2px solid #3B6FEA;
+    color:#3B6FEA;
+    border-radius:12px;
+    padding:12px;
+    font-weight:600;
+}
+
+.btn-outline-primary:hover{
+    background:#3B6FEA;
+    color:#fff;
+}
+.tracking-card{
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.form-control{
+    border-radius:12px;
+}
+
+.form-control:focus{
+    box-shadow:none;
+    border-color:#3B6FEA;
+}
