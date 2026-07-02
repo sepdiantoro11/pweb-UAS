@@ -333,12 +333,12 @@
                                     <td>
                                         <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>"
                                            class="btn btn-sm btn-primary">
-                                            <i class="bi bi-pencil-square"></i>
+                                            <i class="bi bi-pencil-square"></i> Edit
                                         </a>
-                                        <a href="<?php echo site_url('daftarcucian/ubahStatus/' . $c['id_cucian']); ?>"
-                                           class="btn-proses"
-                                           onclick="return confirm('Apakah cucian ini sudah selesai dan akan diambil? Data akan dipindahkan ke riwayat.');">
-                                            <i class="bi bi-check-circle"></i> Selesai / Diambil
+                                        <a href="#" class="btn-proses btn-selesai"
+                                           data-id="<?php echo $c['id_cucian']; ?>"
+                                           data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>">
+                                            <i class="bi bi-check-circle"></i> Selesai
                                         </a>
                                     </td>
                                 </tr>
@@ -370,6 +370,33 @@
                 text: '<?php echo $this->session->flashdata('swal')['text']; ?>'
             });
         <?php endif; ?>
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn-selesai');
+            buttons.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.getAttribute('data-id');
+                    const nama = this.getAttribute('data-nama');
+
+                    Swal.fire({
+                        title: 'Konfirmasi',
+                        text: 'Apakah cucian ' + nama + ' sudah selesai? Data akan dipindahkan ke riwayat.',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#4ec2e0',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, Selesai!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '<?php echo site_url('daftarcucian/ubahStatus/'); ?>' + id;
+                        }
+                    });
+                });
+            });
+        });
     </script>
 </body>
 </html>

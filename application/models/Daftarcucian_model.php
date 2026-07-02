@@ -25,6 +25,8 @@ class Daftarcucian_model extends CI_Model {
         $this->db->select('
             daftar_cucian.*,
             pelanggan.nama_pelanggan,
+            pelanggan.nomor_wa,
+            pelanggan.alamat,
             paket_laundry.nama_paket,
             kasir.nama_kasir
         ');
