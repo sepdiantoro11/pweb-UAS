@@ -7,9 +7,13 @@ class Pelanggan_model extends CI_Model {
         return $this->db->get('paket_laundry')->result_array();
     }
 
-    public function get_pelanggan_by_creds($nama, $nomor_wa) {
+    public function get_paket_by_id($id) {
+        return $this->db->get_where('paket_laundry', array('id_paket' => $id))->row_array();
+    }
+
+    public function get_pelanggan_by_creds($nama, $nomor_hp) {
         $this->db->where('nama_pelanggan', $nama);
-        $this->db->where('nomor_wa', $nomor_wa);
+        $this->db->where('nomor_wa', $nomor_hp);
         $query = $this->db->get('pelanggan');
         return $query->row_array();
     }
@@ -17,11 +21,6 @@ class Pelanggan_model extends CI_Model {
     public function insert_pelanggan($data) {
         $this->db->insert('pelanggan', $data);
         return $this->db->insert_id();
-    }
-
-    public function get_paket_by_id($id_paket) {
-        $this->db->where('id_paket', $id_paket);
-        return $this->db->get('paket_laundry')->row_array();
     }
 
     public function insert_cucian($data) {

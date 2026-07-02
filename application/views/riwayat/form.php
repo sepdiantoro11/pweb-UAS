@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deluxe Laundry - Masukkan Data Pelanggan</title>
-    
+    <title>Deluxe Laundry - Edit Riwayat</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,10 +26,9 @@
             overflow-x: hidden;
         }
 
-        /* --- Sisi Kiri: Layout Komponen Sidebar --- */
         .sidebar {
             width: 280px;
-            background-color: #002d72; /* Warna dasar biru tua sesuai dengan gambar acuan */
+            background-color: #002d72;
             min-height: 100vh;
             padding: 30px 0;
             display: flex;
@@ -78,11 +77,10 @@
             vertical-align: middle;
         }
 
-
         .sidebar-item.active .sidebar-link {
             background-color: rgba(255, 255, 255, 0.12);
-            border-left: 5px solid #ffffff; 
-            padding-left: 20px; 
+            border-left: 5px solid #ffffff;
+            padding-left: 20px;
         }
 
         .sidebar-link:hover {
@@ -138,7 +136,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid #e2e8f0;
             width: 100%;
-            max-width: 850px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 40px 50px;
         }
@@ -174,9 +172,27 @@
             outline: 0;
         }
 
+        .input-field.is-invalid {
+            border-color: #dc3545;
+        }
+
+        .input-field.is-valid {
+            border-color: #198754;
+        }
+
+        .error-validation {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            padding-left: 160px;
+            width: 100%;
+        }
+
         .button-action-area {
             display: flex;
             justify-content: center;
+            gap: 15px;
             margin-top: 35px;
             width: 100%;
         }
@@ -198,13 +214,32 @@
             transform: translateY(-1px);
         }
 
-        .error-validation {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: -15px;
-            margin-bottom: 15px;
-            padding-left: 160px;
-            width: 100%;
+        .btn-batal {
+            background-color: #6c757d;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 50px;
+            border-radius: 8px;
+            border: none;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-batal:hover {
+            background-color: #5a6268;
+            color: #ffffff;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            padding: 5px 0;
+        }
+
+        .form-check-input:checked {
+            background-color: #3b71ca;
+            border-color: #3b71ca;
         }
 
         @media (max-width: 991px) {
@@ -261,7 +296,7 @@
             <img src="<?php echo base_url('assets/images/logo1.png'); ?>" alt="Logo Deluxe Laundry">
         </div>
         <ul class="sidebar-menu">
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a href="<?php echo site_url('pelanggan'); ?>" class="sidebar-link">
                     <i class="bi bi-person-circle"></i> Pelanggan
                 </a>
@@ -271,7 +306,7 @@
                     <i class="bi bi-mailbox"></i> Daftar Cucian
                 </a>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
                 <a href="<?php echo site_url('riwayat'); ?>" class="sidebar-link">
                     <i class="bi bi-clock-history"></i> Riwayat
                 </a>
@@ -285,66 +320,73 @@
             <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
         </div>
 
-        <h2 class="page-title">Masukkan Data Pelanggan</h2>
+        <h2 class="page-title">Edit Riwayat Transaksi</h2>
 
         <?php if($this->session->flashdata('message')): ?>
-            <div style="max-width: 850px; width: 100%; margin: 0 auto 15px auto;">
+            <div style="max-width: 700px; width: 100%; margin: 0 auto 15px auto;">
                 <?php echo $this->session->flashdata('message'); ?>
             </div>
         <?php endif; ?>
 
         <div class="form-card">
-            <?php echo form_open('pelanggan'); ?>
+            <?php echo form_open('riwayat/ubah/' . $riwayat['id_riwayat']); ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="nama">Nama:</label>
-                    <input type="text" class="input-field" id="nama" name="nama" value="<?php echo set_value('nama'); ?>" autocomplete="off">
+                    <label class="label-field" for="id_cucian">ID Cucian:</label>
+                    <input type="text" class="input-field" id="id_cucian" value="<?php echo $riwayat['id_cucian']; ?>" disabled style="background:#f0f0f0;">
                 </div>
-                <?php if(form_error('nama')): ?>
-                    <div class="error-validation"><?php echo form_error('nama', '', ''); ?></div>
+
+                <div class="form-group-row">
+                    <label class="label-field" for="nama_pelanggan_arsip">Nama Pelanggan:</label>
+                    <input type="text" class="input-field <?php echo form_error('nama_pelanggan_arsip') ? 'is-invalid' : (isset($_POST['nama_pelanggan_arsip']) ? 'is-valid' : ''); ?>" id="nama_pelanggan_arsip" name="nama_pelanggan_arsip" value="<?php echo set_value('nama_pelanggan_arsip', $riwayat['nama_pelanggan_arsip']); ?>" autocomplete="off">
+                </div>
+                <?php if(form_error('nama_pelanggan_arsip')): ?>
+                    <div class="error-validation"><?php echo form_error('nama_pelanggan_arsip', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="nomor_hp">Nomor HP:</label>
-                    <input type="text" class="input-field" id="nomor_hp" name="nomor_hp" value="<?php echo set_value('nomor_hp'); ?>" autocomplete="off">
+                    <label class="label-field" for="nama_paket_arsip">Nama Paket:</label>
+                    <input type="text" class="input-field <?php echo form_error('nama_paket_arsip') ? 'is-invalid' : (isset($_POST['nama_paket_arsip']) ? 'is-valid' : ''); ?>" id="nama_paket_arsip" name="nama_paket_arsip" value="<?php echo set_value('nama_paket_arsip', $riwayat['nama_paket_arsip']); ?>" autocomplete="off">
                 </div>
-                <?php if(form_error('nomor_hp')): ?>
-                    <div class="error-validation"><?php echo form_error('nomor_hp', '', ''); ?></div>
+                <?php if(form_error('nama_paket_arsip')): ?>
+                    <div class="error-validation"><?php echo form_error('nama_paket_arsip', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="alamat">Alamat:</label>
-                    <input type="text" class="input-field" id="alamat" name="alamat" value="<?php echo set_value('alamat'); ?>" autocomplete="off">
+                    <label class="label-field" for="total_biaya_final">Total Biaya:</label>
+                    <input type="number" class="input-field <?php echo form_error('total_biaya_final') ? 'is-invalid' : (isset($_POST['total_biaya_final']) ? 'is-valid' : ''); ?>" id="total_biaya_final" name="total_biaya_final" value="<?php echo set_value('total_biaya_final', $riwayat['total_biaya_final']); ?>" autocomplete="off">
                 </div>
-                <?php if(form_error('alamat')): ?>
-                    <div class="error-validation"><?php echo form_error('alamat', '', ''); ?></div>
+                <?php if(form_error('total_biaya_final')): ?>
+                    <div class="error-validation"><?php echo form_error('total_biaya_final', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="paket">Paket:</label>
-                    <select class="input-field form-select" id="paket" name="paket">
-                        <option value="">Pilih Paket Laundry</option>
-                        <?php foreach($paket_list as $pk): ?>
-                            <option value="<?php echo $pk['id_paket']; ?>" <?php echo set_select('paket', $pk['id_paket']); ?>>
-                                <?php echo $pk['nama_paket']; ?> (Rp <?php echo number_format($pk['harga_per_kg'], 0, ',', '.'); ?>/Kg)
-                            </option>
+                    <label class="label-field">Status Cucian:</label>
+                    <div class="radio-group">
+                        <?php
+                        $status_options = ['Diproses', 'Selesai Dicuci'];
+                        $current_status = set_value('status_cucian', isset($riwayat['status_cucian']) ? $riwayat['status_cucian'] : '');
+                        foreach ($status_options as $s):
+                        ?>
+                            <div class="form-check">
+                                <input class="form-check-input <?php echo form_error('status_cucian') ? 'is-invalid' : ''; ?>"
+                                    type="radio" name="status_cucian" id="status_<?php echo $s; ?>"
+                                    value="<?php echo $s; ?>"
+                                    <?php echo set_radio('status_cucian', $s, $current_status === $s); ?>>
+                                <label class="form-check-label" for="status_<?php echo $s; ?>">
+                                    <?php echo $s; ?>
+                                </label>
+                            </div>
                         <?php endforeach; ?>
-                    </select>
+                    </div>
                 </div>
-                <?php if(form_error('paket')): ?>
-                    <div class="error-validation"><?php echo form_error('paket', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="berat">Berat Cucian:</label>
-                    <input type="text" class="input-field" id="berat" name="berat" value="<?php echo set_value('berat'); ?>" placeholder="Contoh: 3 atau 3.5" autocomplete="off">
-                </div>
-                <?php if(form_error('berat')): ?>
-                    <div class="error-validation"><?php echo form_error('berat', '', ''); ?></div>
+                <?php if(form_error('status_cucian')): ?>
+                    <div class="error-validation" style="padding-left:160px;"><?php echo form_error('status_cucian', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="button-action-area">
-                    <button type="submit" class="btn-simpan">Simpan</button>
+                    <a href="<?php echo site_url('riwayat'); ?>" class="btn-batal">Batal</a>
+                    <button type="submit" class="btn-simpan">Update</button>
                 </div>
 
             <?php echo form_close(); ?>

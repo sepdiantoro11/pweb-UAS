@@ -10,6 +10,7 @@ class Pelanggan extends CI_Controller {
             redirect('auth');
         }
         $this->load->model('Pelanggan_model');
+        $this->load->library('form_validation');
     }
 
     public function index() {

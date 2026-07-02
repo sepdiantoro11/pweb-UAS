@@ -185,7 +185,7 @@
         
         <div class="header-section">
             <h1>Selamat Datang Di</h1>
-            <img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="Logo Deluxe Laundry" class="logo-img">
+<img src="<?php echo base_url('assets/images/logo1.png'); ?>" alt="Logo Deluxe Laundry" class="logo-img">
         </div>
 
         <?php if($this->session->flashdata('message')): ?>
