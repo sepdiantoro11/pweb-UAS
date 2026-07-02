@@ -271,7 +271,6 @@
                             <th>Total Biaya</th>
                             <th>Status</th>
                             <th>Tanggal Diambil</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -293,16 +292,11 @@
                                         <?php endif; ?>
                                     </td>
                                     <td><?php echo date('d-m-Y H:i', strtotime($r['tgl_diambil'])); ?></td>
-                                    <td>
-                                        <a href="<?php echo site_url('riwayat/ubah/' . $r['id_riwayat']); ?>" class="btn btn-sm btn-primary">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="9">
+                                <td colspan="8">
                                     <div class="table-empty">
                                         <i class="bi bi-inbox"></i>
                                         Belum ada data riwayat transaksi.

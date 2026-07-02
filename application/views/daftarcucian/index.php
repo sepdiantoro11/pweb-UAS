@@ -324,6 +324,10 @@
                                         </span>
                                     </td>
                                     <td>
+                                        <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>"
+                                           class="btn btn-sm btn-primary">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
                                         <a href="<?php echo site_url('daftarcucian/ubahStatus/' . $c['id_cucian']); ?>"
                                            class="btn-proses"
                                            onclick="return confirm('Apakah cucian ini sudah selesai dan akan diambil? Data akan dipindahkan ke riwayat.');">

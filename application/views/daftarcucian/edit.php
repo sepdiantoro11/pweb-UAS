@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deluxe Laundry - Edit Riwayat</title>
+    <title>Deluxe Laundry - Edit Cucian</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -176,10 +176,6 @@
             border-color: #dc3545;
         }
 
-        .input-field.is-valid {
-            border-color: #198754;
-        }
-
         .error-validation {
             color: #dc3545;
             font-size: 0.85rem;
@@ -229,17 +225,6 @@
         .btn-batal:hover {
             background-color: #5a6268;
             color: #ffffff;
-        }
-
-        .radio-group {
-            display: flex;
-            gap: 30px;
-            padding: 5px 0;
-        }
-
-        .form-check-input:checked {
-            background-color: #3b71ca;
-            border-color: #3b71ca;
         }
 
         @media (max-width: 991px) {
@@ -301,12 +286,12 @@
                     <i class="bi bi-person-circle"></i> Pelanggan
                 </a>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
                 <a href="<?php echo site_url('daftarcucian'); ?>" class="sidebar-link">
                     <i class="bi bi-mailbox"></i> Daftar Cucian
                 </a>
             </li>
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a href="<?php echo site_url('riwayat'); ?>" class="sidebar-link">
                     <i class="bi bi-clock-history"></i> Riwayat
                 </a>
@@ -320,7 +305,7 @@
             <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
         </div>
 
-        <h2 class="page-title">Edit Riwayat Transaksi</h2>
+        <h2 class="page-title">Edit Data Cucian</h2>
 
         <?php if($this->session->flashdata('message')): ?>
             <div style="max-width: 700px; width: 100%; margin: 0 auto 15px auto;">
@@ -329,63 +314,62 @@
         <?php endif; ?>
 
         <div class="form-card">
-            <?php echo form_open('riwayat/ubah/' . $riwayat['id_riwayat']); ?>
+            <?php echo form_open('daftarcucian/update/' . $cucian['id_cucian']); ?>
 
                 <div class="form-group-row">
                     <label class="label-field" for="id_cucian">ID Cucian:</label>
-                    <input type="text" class="input-field" id="id_cucian" value="<?php echo $riwayat['id_cucian']; ?>" disabled style="background:#f0f0f0;">
+                    <input type="text" class="input-field" id="id_cucian" value="<?php echo $cucian['id_cucian']; ?>" disabled style="background:#f0f0f0;">
                 </div>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="nama_pelanggan_arsip">Nama Pelanggan:</label>
-                    <input type="text" class="input-field <?php echo form_error('nama_pelanggan_arsip') ? 'is-invalid' : (isset($_POST['nama_pelanggan_arsip']) ? 'is-valid' : ''); ?>" id="nama_pelanggan_arsip" name="nama_pelanggan_arsip" value="<?php echo set_value('nama_pelanggan_arsip', $riwayat['nama_pelanggan_arsip']); ?>" autocomplete="off">
+                    <label class="label-field" for="nama">Nama:</label>
+                    <input type="text" class="input-field <?php echo form_error('nama') ? 'is-invalid' : (isset($_POST['nama']) ? 'is-valid' : ''); ?>" id="nama" name="nama" value="<?php echo set_value('nama', $cucian['nama_pelanggan']); ?>" autocomplete="off">
                 </div>
-                <?php if(form_error('nama_pelanggan_arsip')): ?>
-                    <div class="error-validation"><?php echo form_error('nama_pelanggan_arsip', '', ''); ?></div>
+                <?php if(form_error('nama')): ?>
+                    <div class="error-validation"><?php echo form_error('nama', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="nama_paket_arsip">Nama Paket:</label>
-                    <input type="text" class="input-field <?php echo form_error('nama_paket_arsip') ? 'is-invalid' : (isset($_POST['nama_paket_arsip']) ? 'is-valid' : ''); ?>" id="nama_paket_arsip" name="nama_paket_arsip" value="<?php echo set_value('nama_paket_arsip', $riwayat['nama_paket_arsip']); ?>" autocomplete="off">
+                    <label class="label-field" for="nomor_hp">Nomor HP:</label>
+                    <input type="text" class="input-field <?php echo form_error('nomor_hp') ? 'is-invalid' : (isset($_POST['nomor_hp']) ? 'is-valid' : ''); ?>" id="nomor_hp" name="nomor_hp" value="<?php echo set_value('nomor_hp', $cucian['nomor_wa']); ?>" autocomplete="off">
                 </div>
-                <?php if(form_error('nama_paket_arsip')): ?>
-                    <div class="error-validation"><?php echo form_error('nama_paket_arsip', '', ''); ?></div>
+                <?php if(form_error('nomor_hp')): ?>
+                    <div class="error-validation"><?php echo form_error('nomor_hp', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field" for="total_biaya_final">Total Biaya:</label>
-                    <input type="number" class="input-field <?php echo form_error('total_biaya_final') ? 'is-invalid' : (isset($_POST['total_biaya_final']) ? 'is-valid' : ''); ?>" id="total_biaya_final" name="total_biaya_final" value="<?php echo set_value('total_biaya_final', $riwayat['total_biaya_final']); ?>" autocomplete="off">
+                    <label class="label-field" for="alamat">Alamat:</label>
+                    <input type="text" class="input-field <?php echo form_error('alamat') ? 'is-invalid' : (isset($_POST['alamat']) ? 'is-valid' : ''); ?>" id="alamat" name="alamat" value="<?php echo set_value('alamat', $cucian['alamat']); ?>" autocomplete="off">
                 </div>
-                <?php if(form_error('total_biaya_final')): ?>
-                    <div class="error-validation"><?php echo form_error('total_biaya_final', '', ''); ?></div>
+                <?php if(form_error('alamat')): ?>
+                    <div class="error-validation"><?php echo form_error('alamat', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="form-group-row">
-                    <label class="label-field">Status Cucian:</label>
-                    <div class="radio-group">
-                        <?php
-                        $status_options = ['Diproses', 'Selesai Dicuci'];
-                        $current_status = set_value('status_cucian', isset($riwayat['status_cucian']) ? $riwayat['status_cucian'] : '');
-                        foreach ($status_options as $s):
-                        ?>
-                            <div class="form-check">
-                                <input class="form-check-input <?php echo form_error('status_cucian') ? 'is-invalid' : ''; ?>"
-                                    type="radio" name="status_cucian" id="status_<?php echo $s; ?>"
-                                    value="<?php echo $s; ?>"
-                                    <?php echo set_radio('status_cucian', $s, $current_status === $s); ?>>
-                                <label class="form-check-label" for="status_<?php echo $s; ?>">
-                                    <?php echo $s; ?>
-                                </label>
-                            </div>
+                    <label class="label-field" for="paket">Paket:</label>
+                    <select class="input-field form-select" id="paket" name="paket">
+                        <option value="">Pilih Paket Laundry</option>
+                        <?php foreach($paket_list as $pk): ?>
+                            <option value="<?php echo $pk['id_paket']; ?>" <?php echo set_select('paket', $pk['id_paket'], $pk['id_paket'] == $cucian['id_paket']); ?>>
+                                <?php echo $pk['nama_paket']; ?> (Rp <?php echo number_format($pk['harga_per_kg'], 0, ',', '.'); ?>/Kg)
+                            </option>
                         <?php endforeach; ?>
-                    </div>
+                    </select>
                 </div>
-                <?php if(form_error('status_cucian')): ?>
-                    <div class="error-validation" style="padding-left:160px;"><?php echo form_error('status_cucian', '', ''); ?></div>
+                <?php if(form_error('paket')): ?>
+                    <div class="error-validation"><?php echo form_error('paket', '', ''); ?></div>
+                <?php endif; ?>
+
+                <div class="form-group-row">
+                    <label class="label-field" for="berat">Berat (Kg):</label>
+                    <input type="text" class="input-field <?php echo form_error('berat') ? 'is-invalid' : (isset($_POST['berat']) ? 'is-valid' : ''); ?>" id="berat" name="berat" value="<?php echo set_value('berat', $cucian['berat_laundry']); ?>" placeholder="Contoh: 3 atau 3.5" autocomplete="off">
+                </div>
+                <?php if(form_error('berat')): ?>
+                    <div class="error-validation"><?php echo form_error('berat', '', ''); ?></div>
                 <?php endif; ?>
 
                 <div class="button-action-area">
-                    <a href="<?php echo site_url('riwayat'); ?>" class="btn-batal">Batal</a>
+                    <a href="<?php echo site_url('daftarcucian'); ?>" class="btn-batal">Batal</a>
                     <button type="submit" class="btn-simpan">Update</button>
                 </div>
 
@@ -395,5 +379,15 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php if($this->session->flashdata('swal')): ?>
+            Swal.fire({
+                icon: '<?php echo $this->session->flashdata('swal')['icon']; ?>',
+                title: '<?php echo $this->session->flashdata('swal')['title']; ?>',
+                text: '<?php echo $this->session->flashdata('swal')['text']; ?>'
+            });
+        <?php endif; ?>
+    </script>
 </body>
 </html>

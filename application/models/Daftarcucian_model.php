@@ -38,6 +38,24 @@ class Daftarcucian_model extends CI_Model {
         return $this->db->update('daftar_cucian', array('status_cucian' => $status));
     }
 
+    public function get_all_paket() {
+        return $this->db->get('paket_laundry')->result_array();
+    }
+
+    public function get_paket_by_id($id) {
+        return $this->db->get_where('paket_laundry', array('id_paket' => $id))->row_array();
+    }
+
+    public function updateCucian($id, $data) {
+        $this->db->where('id_cucian', $id);
+        return $this->db->update('daftar_cucian', $data);
+    }
+
+    public function updatePelanggan($id_pelanggan, $data) {
+        $this->db->where('id_pelanggan', $id_pelanggan);
+        return $this->db->update('pelanggan', $data);
+    }
+
     public function moveToRiwayat($id) {
         $cucian = $this->getById($id);
         if (!$cucian) {
@@ -49,6 +67,7 @@ class Daftarcucian_model extends CI_Model {
             'nama_pelanggan_arsip'  => $cucian['nama_pelanggan'],
             'nama_paket_arsip'      => $cucian['nama_paket'],
             'total_biaya_final'     => $cucian['total_biaya'],
+            'status_cucian'         => 'Selesai Dicuci',
             'tgl_diambil'           => date('Y-m-d H:i:s')
         );
         $this->db->insert('riwayat', $data_riwayat);
