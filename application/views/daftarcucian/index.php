@@ -291,7 +291,10 @@
                         <tr>
                             <th>No</th>
                             <th>No. Resi</th>
+<<<<<<< HEAD
                             <th>Nomor HP</th>
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                             <th>Nama Pelanggan</th>
                             <th>Nama Paket</th>
                             <th>Kasir</th>
@@ -309,7 +312,10 @@
                                 <tr>
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo htmlspecialchars($c['no_resi']); ?></td>
+<<<<<<< HEAD
                                     <td><?php echo htmlspecialchars($c['nomor_wa']); ?></td>
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                                     <td><?php echo htmlspecialchars($c['nama_pelanggan']); ?></td>
                                     <td><?php echo htmlspecialchars($c['nama_paket']); ?></td>
                                     <td><?php echo htmlspecialchars($c['nama_kasir']); ?></td>

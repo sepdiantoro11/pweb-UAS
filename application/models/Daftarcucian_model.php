@@ -7,7 +7,10 @@ class Daftarcucian_model extends CI_Model {
         $this->db->select('
             daftar_cucian.*,
             pelanggan.nama_pelanggan,
+<<<<<<< HEAD
             pelanggan.nomor_wa,
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
             paket_laundry.nama_paket,
             kasir.nama_kasir
         ');
@@ -72,7 +75,10 @@ class Daftarcucian_model extends CI_Model {
             'id_cucian'             => $cucian['id_cucian'],
             'no_resi'               => $cucian['no_resi'],
             'nama_pelanggan_arsip'  => $cucian['nama_pelanggan'],
+<<<<<<< HEAD
             'nomor_wa_arsip'       => $cucian['nomor_wa'],
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
             'nama_paket_arsip'      => $cucian['nama_paket'],
             'total_biaya_final'     => $cucian['total_biaya'],
             'status_cucian'         => 'Selesai Dicuci',
