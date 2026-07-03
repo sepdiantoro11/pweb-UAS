@@ -119,7 +119,7 @@
         .table-card {
             background: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
@@ -205,7 +205,6 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>No</th>
                     <th>ID Riwayat</th>
                     <th>ID Cucian</th>
                     <th>No Resi</th>
@@ -221,9 +220,8 @@
 
                 <tbody>
                 <?php if(!empty($riwayat)): ?>
-                    <?php $no=1; foreach($riwayat as $r): ?>
+                    <?php foreach($riwayat as $r): ?>
                         <tr>
-                            <td><?= $no++ ?></td>
                             <td><?= $r['id_riwayat'] ?></td>
                             <td><?= $r['id_cucian'] ?></td>
                             <td><?= $r['no_resi'] ?></td>
@@ -231,18 +229,18 @@
                             <td><?= $r['nama_pelanggan_arsip'] ?></td>
                             <td><?= $r['nama_paket_arsip'] ?></td>
                             <td>Rp <?= number_format($r['total_biaya_final']) ?></td>
-                            <td><?= $r['status_cucian'] ?></td>
-                            <td><?= $r['tgl_diambil'] ?></td>
+                            <td><span class="badge bg-success">Selesai</span></td>
+                            <td><?= date('d-m-Y', strtotime($r['tgl_diambil'])) ?></td>
                             <td>
                                 <a href="<?= site_url('riwayat/hapus/'.$r['id_riwayat']) ?>" class="btn btn-danger btn-sm btn-hapus">
-                                    Hapus
+                                    <i class="bi bi-trash"></i>
                                 </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
-                        <td colspan="11">
+                        <td colspan="10">
                             <div class="table-empty">Belum ada data riwayat</div>
                         </td>
                     </tr>

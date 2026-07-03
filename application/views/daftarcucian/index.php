@@ -133,7 +133,7 @@
         .table-card {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
             border: 1px solid #e2e8f0;
             width: 100%;
             padding: 0;
@@ -159,11 +159,14 @@
             border-bottom: 2px solid #e2e8f0;
             padding: 12px 15px;
             font-size: 0.95rem;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .table tbody td {
             padding: 12px 15px;
             vertical-align: middle;
+            text-align: center;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
         }
@@ -316,16 +319,16 @@
                                     <td><?php echo htmlspecialchars($c['nama_kasir']); ?></td>
                                     <td><?php echo number_format($c['berat_laundry'], 2, ',', '.'); ?></td>
                                     <td>Rp <?php echo number_format($c['total_biaya'], 0, ',', '.'); ?></td>
-                                    <td><?php echo date('d-m-Y H:i', strtotime($c['tgl_masuk'])); ?></td>
+                                    <td><?php echo date('d-m-Y', strtotime($c['tgl_masuk'])); ?></td>
                                     <td>
                                         <?php
                                         $badge_class = '';
                                         switch ($c['status_cucian']) {
-                                            case 'Diproses':  $badge_class = 'bg-secondary';  break;
+                                            case 'Diproses':  $badge_class = 'bg-warning text-dark'; break;
                                             case 'Dicuci':    $badge_class = 'bg-info text-dark'; break;
                                             case 'Disetrika': $badge_class = 'bg-warning text-dark'; break;
-                                            case 'Selesai':   $badge_class = 'bg-primary'; break;
-                                            case 'Diambil':   $badge_class = 'bg-success'; break;
+                                            case 'Selesai':   $badge_class = 'bg-success'; break;
+                                            case 'Diambil':   $badge_class = 'bg-secondary'; break;
                                             default:          $badge_class = 'bg-secondary';
                                         }
                                         ?>
@@ -334,15 +337,15 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <div class="d-flex style" style="gap: 5px;">
-                                            <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>" class="btn btn-sm btn-primary">
-                                                <i class="bi bi-pencil-square"></i> Edit
+                                        <div class="d-flex" style="gap: 5px;">
+                                            <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>" class="btn btn-sm btn-primary" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
                                             </a>
                                             <a href="#" class="btn-proses btn-selesai" data-id="<?php echo $c['id_cucian']; ?>" data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>">
-                                                <i class="bi bi-check-circle"></i> Selesai
+                                                Selesai
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger btn-hapus" data-id="<?php echo $c['id_cucian']; ?>" data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>">
-                                                <i class="bi bi-trash"></i> Hapus
+                                            <a href="#" class="btn btn-sm btn-danger btn-hapus" data-id="<?php echo $c['id_cucian']; ?>" data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>" title="Hapus">
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         </div>
                                     </td>

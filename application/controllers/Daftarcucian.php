@@ -85,7 +85,7 @@ class Daftarcucian extends CI_Controller {
             $nomor_hp = $this->input->post('nomor_hp', TRUE);
             $alamat   = $this->input->post('alamat', TRUE);
             $id_paket = $this->input->post('paket', TRUE);
-            $berat    = $this->input->post('berat', TRUE);
+            $berat    = str_replace(',', '.', $this->input->post('berat', TRUE));
             $no_resi  = $this->input->post('no_resi', TRUE);
 
             $data_pelanggan = array(

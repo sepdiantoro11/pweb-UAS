@@ -40,9 +40,9 @@ class Tracking_model extends CI_Model {
                 'no_resi'        => $riwayat['no_resi'],
                 'nomor_wa'       => $riwayat['nomor_wa_arsip'],
                 'nama_paket'     => $riwayat['nama_paket_arsip'],
-                'berat_laundry'  => '-',
+                'berat_laundry'  => $riwayat['berat_laundry'],
                 'total_biaya'    => $riwayat['total_biaya_final'],
-                'status_cucian'  => 'Sudah Diambil'
+                'status_cucian'  => 'Selesai'
             );
         }
 

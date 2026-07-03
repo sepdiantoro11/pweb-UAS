@@ -79,8 +79,9 @@ class Daftarcucian_model extends CI_Model {
             'nama_pelanggan_arsip'  => $cucian['nama_pelanggan'],
             'nomor_wa_arsip'       => $cucian['nomor_wa'],
             'nama_paket_arsip'      => $cucian['nama_paket'],
+            'berat_laundry'         => $cucian['berat_laundry'],
             'total_biaya_final'     => $cucian['total_biaya'],
-            'status_cucian'         => 'Selesai Dicuci',
+            'status_cucian'         => 'Selesai',
             'tgl_diambil'           => date('Y-m-d H:i:s')
         );
         $this->db->insert('riwayat', $data_riwayat);

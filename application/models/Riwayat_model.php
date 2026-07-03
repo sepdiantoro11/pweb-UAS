@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Riwayat_model extends CI_Model {
 
     public function getAll() {
-        $this->db->order_by('tgl_diambil', 'DESC');
+        $this->db->order_by('tgl_diambil', 'ASC');
         return $this->db->get('riwayat')->result_array();
     }
 
     public function searchRiwayat($search) {
-        $this->db->order_by('tgl_diambil', 'DESC');
+        $this->db->order_by('tgl_diambil', 'ASC');
         $this->db->from('riwayat');
 
         $this->db->group_start();

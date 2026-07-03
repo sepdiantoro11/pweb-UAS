@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2026 at 12:59 PM
+-- Generation Time: Jul 03, 2026 at 10:32 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.4.17
 
@@ -39,15 +39,6 @@ CREATE TABLE `daftar_cucian` (
   `status_cucian` enum('Diproses','Selesai Dicuci') DEFAULT 'Diproses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `daftar_cucian`
---
-
-INSERT INTO `daftar_cucian` (`id_cucian`, `no_resi`, `id_pelanggan`, `id_kasir`, `id_paket`, `berat_laundry`, `total_biaya`, `tgl_masuk`, `status_cucian`) VALUES
-(1, '', 1, 1, 1, 3.00, 21000, '2026-06-26 14:25:09', 'Diproses'),
-(3, '', 4, 1, 1, 3.00, 21000, '2026-07-02 11:02:49', 'Diproses'),
-(4, '', 5, 3, 2, 2.50, 12500, '2026-07-02 11:04:03', 'Diproses');
-
 -- --------------------------------------------------------
 
 --
@@ -69,7 +60,9 @@ INSERT INTO `kasir` (`id_kasir`, `nama_kasir`, `email`, `password`) VALUES
 (1, 'Siti Aminah', 'siti@laundry.com', '$2y$12$5hGlkmQBG3XenQiRXZqvM.W6y13dLX30F9UHGEw9xPugl8ay/oVFa'),
 (2, 'Rian Hidayat', 'rian@laundry.com', '$2y$12$gA2blraazVTD6q1nfDix0.fkotXILazNNNO0ts96xuxG7ONoaCd8y'),
 (3, 'Test Kasir', 'test@laundry.com', '$2y$12$cK74KC3BF.r34UYUeaxl6eUacbENGAtraxEXo.ZvsURkH9n1jRRs6'),
-(4, 'rou', 'rou@gmail.com', '$2y$12$mOKGe/yoBSXz97/1AlnLEuvFX.8PLu298.MRnY8bkJnjPaRG.O6tK');
+(4, 'rou', 'rou@gmail.com', '$2y$12$mOKGe/yoBSXz97/1AlnLEuvFX.8PLu298.MRnY8bkJnjPaRG.O6tK'),
+(5, 'Test User', 'test@test.com', '$2y$12$WN5zyyqAmusum9lFU27S5eXDZMhMuPTPcO8eRWLbAsgRth8MZ0sqS'),
+(6, 'Dwi', 'Dwi@gmail.com', '$2y$12$Yyh3RtD1FGdiTX41aj6EsOO1jDmN4zVWIz04.Wz2buaW0jX6D1bpK');
 
 -- --------------------------------------------------------
 
@@ -116,7 +109,22 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `nomor_wa`, `alamat`)
 (3, 'Andi Wijaya', '081900112233', 'Perumahan Asri Blok C, Ampenan'),
 (4, 'Ahmad Test', '081234567890', 'Jl Test No 1'),
 (5, 'Budi Lestari', '087712345678', 'Perum Griya Asri Blok B 5'),
-(6, 'Rou', '087786767333333', 'Perumahan');
+(6, 'Rou', '087786767333333', 'Perumahan'),
+(7, 'DWI', '098198181', 'Gebang'),
+(8, 'Dwi 1', '03828284', 'Baru'),
+(9, 'idddb', '9173701', 'ffqouf'),
+(10, 'qdhqhd', '4232354', 'qwnfjqf'),
+(11, 'uofufaf', '46342292', 'ifgfff'),
+(12, 'ihwhefuwef', '8314844', 'dhqbfebff'),
+(13, 'ufuefef', '269343', 'ugcyyi'),
+(14, 'cica', '2989482174', 'UODua'),
+(15, 'aiaaa', '3824289', 'fkjbcv'),
+(16, 'Fia', '284282', 'fwjff'),
+(17, 'you', '7486587', 'fyyhvh'),
+(18, 'nadna', '123456', 'fuff'),
+(19, 'dwi', '1813', 'ufqf'),
+(20, 'wijfw', '1804', 'ff w'),
+(21, 'wfouf', '28032', 'wjf');
 
 -- --------------------------------------------------------
 
@@ -129,8 +137,10 @@ CREATE TABLE `riwayat` (
   `no_resi` varchar(50) NOT NULL,
   `id_cucian` int(11) NOT NULL,
   `nama_pelanggan_arsip` varchar(100) NOT NULL,
+  `nomor_wa_arsip` varchar(20) DEFAULT NULL,
   `nama_paket_arsip` varchar(100) NOT NULL,
   `total_biaya_final` int(11) NOT NULL,
+  `berat_laundry` decimal(10,2) NOT NULL DEFAULT 0.00,
   `tgl_diambil` datetime DEFAULT current_timestamp(),
   `status_cucian` varchar(20) DEFAULT 'Diproses'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -139,11 +149,13 @@ CREATE TABLE `riwayat` (
 -- Dumping data for table `riwayat`
 --
 
-INSERT INTO `riwayat` (`id_riwayat`, `no_resi`, `id_cucian`, `nama_pelanggan_arsip`, `nama_paket_arsip`, `total_biaya_final`, `tgl_diambil`, `status_cucian`) VALUES
-(1, '', 99, 'Budi Utomo', 'Cuci + Setrika', 35000, '2026-06-25 09:30:00', 'Selesai Dicuci'),
-(2, '', 100, 'Siti Sarah', 'Setrika Aja', 16000, '2026-06-25 14:15:00', 'Diproses'),
-(3, '', 5, 'Rou', 'Cuci + Setrika', 35000, '2026-07-02 12:39:03', 'Diproses'),
-(4, '', 2, 'Rina Amanda', 'Cuci Kering', 12500, '2026-07-02 12:39:12', 'Selesai Dicuci');
+INSERT INTO `riwayat` (`id_riwayat`, `no_resi`, `id_cucian`, `nama_pelanggan_arsip`, `nomor_wa_arsip`, `nama_paket_arsip`, `total_biaya_final`, `berat_laundry`, `tgl_diambil`, `status_cucian`) VALUES
+(11, 'LND-20260702-002', 16, 'you', '7486587', 'Setrika Aja', 32000, 0.00, '2026-07-03 05:54:09', 'Selesai Dicuci'),
+(12, 'LND-20260702-001', 15, 'Fia', '284282', 'Cuci + Setrika', 35000, 0.00, '2026-07-03 09:29:31', 'Selesai Dicuci'),
+(13, 'LND-20260703-002', 18, 'dwi', '1813', 'Cuci Kering', 22500, 4.50, '2026-07-03 09:53:50', 'Selesai'),
+(14, 'LND-20260703-003', 20, 'wfouf', '28032', 'Cuci Saja', 28000, 7.00, '2026-07-03 10:17:11', 'Selesai'),
+(15, 'LND-20260703-001', 17, 'nadna', '123456', 'Cuci + Setrika', 40600, 5.80, '2026-07-03 10:17:26', 'Selesai'),
+(16, 'LND-20260703-002', 19, 'wijfw', '1804', 'Cuci + Setrika', 616000, 88.00, '2026-07-03 10:25:24', 'Selesai');
 
 --
 -- Indexes for dumped tables
@@ -191,13 +203,13 @@ ALTER TABLE `riwayat`
 -- AUTO_INCREMENT for table `daftar_cucian`
 --
 ALTER TABLE `daftar_cucian`
-  MODIFY `id_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `kasir`
 --
 ALTER TABLE `kasir`
-  MODIFY `id_kasir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_kasir` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `paket_laundry`
@@ -209,13 +221,13 @@ ALTER TABLE `paket_laundry`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `riwayat`
 --
 ALTER TABLE `riwayat`
-  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_riwayat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

@@ -39,7 +39,7 @@
     .tracking-card{
         background:#fff;
         border-radius:24px;
-        box-shadow:0 10px 35px rgba(56,115,224,.10);
+        box-shadow:0 16px 48px rgba(0,0,0,.18), 0 4px 16px rgba(0,0,0,.1);
         border:none;
     }
 
@@ -110,7 +110,7 @@
         border:1px solid #bfe4f5;
         border-left:5px solid #3873e0;
         border-radius:14px;
-        box-shadow:0 6px 18px rgba(56,115,224,.12);
+        box-shadow:0 10px 30px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08);
     }
 
     .result-card h4{
@@ -205,7 +205,7 @@
                                 </tr>
                                 <tr>
                                     <th>Berat</th>
-                                    <td><?= $hasil['berat_laundry']; ?> Kg</td>
+                                    <td><?= (floor($hasil['berat_laundry']) == $hasil['berat_laundry']) ? number_format($hasil['berat_laundry'], 0, ',', '.') : number_format($hasil['berat_laundry'], 2, ',', '.'); ?> Kg</td>
                                 </tr>
                                 <tr>
                                     <th>Total</th>

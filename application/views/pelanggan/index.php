@@ -135,7 +135,7 @@
         .form-card {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
             border: 1px solid #e2e8f0;
             width: 100%;
             max-width: 850px;
@@ -345,7 +345,7 @@
 
                 <div class="form-group-row">
                     <label class="label-field" for="no_resi">No. Resi:</label>
-                    <input type="text" class="input-field" id="no_resi" name="no_resi" value="<?php echo set_value('no_resi'); ?>" placeholder="Biarkan kosong untuk generate otomatis" autocomplete="off">
+                    <input type="text" class="input-field" id="no_resi" name="no_resi" value="<?php echo set_value('no_resi', $no_resi); ?>" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
                 </div>
 
                 <div class="button-action-area">
