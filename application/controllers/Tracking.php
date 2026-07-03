@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Tracking extends CI_Controller {
 
+<<<<<<< HEAD
     public function __construct()
     {
         parent::__construct();
@@ -26,6 +27,11 @@ class Tracking extends CI_Controller {
         }
 
         $this->load->view('tracking/index',$data);
+=======
+    public function index()
+    {
+        $this->load->view('tracking/index');
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
     }
 
 }

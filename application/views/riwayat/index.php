@@ -267,7 +267,10 @@
                             <th>ID Riwayat</th>
                             <th>ID Cucian</th>
                             <th>No. Resi</th>
+<<<<<<< HEAD
                             <th>Nomor HP</th>
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                             <th>Nama Pelanggan</th>
                             <th>Nama Paket</th>
                             <th>Total Biaya</th>
@@ -284,7 +287,10 @@
                                     <td><?php echo $r['id_riwayat']; ?></td>
                                     <td><?php echo $r['id_cucian']; ?></td>
                                     <td><?php echo htmlspecialchars($r['no_resi']); ?></td>
+<<<<<<< HEAD
                                     <td><?php echo htmlspecialchars($r['nomor_wa_arsip']); ?></td>
+=======
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                                     <td><?php echo htmlspecialchars($r['nama_pelanggan_arsip']); ?></td>
                                     <td><?php echo htmlspecialchars($r['nama_paket_arsip']); ?></td>
                                     <td>Rp <?php echo number_format($r['total_biaya_final'], 0, ',', '.'); ?></td>

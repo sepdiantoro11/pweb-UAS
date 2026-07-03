@@ -7,6 +7,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<<<<<<< HEAD
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -91,6 +92,22 @@
             </div>
 
             <div class="hero-card p-5 text-center">
+=======
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+        <div class="col-md-8">
+
+            <div class="text-center mb-4">
+                <h2 class="hero-title fw-bold text-primary mb-4" style="font-size: 36px;">Selamat Datang Di</h2>
+                <img src="<?= base_url('assets/images/logo1.png'); ?>" width="220" alt="Deluxe Laundry Logo" class="mb-2">
+            </div>
+
+            <div class="hero-card text-center p-5">
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
 
                 <h1 class="text-primary fw-bold mb-3" style="font-size: 32px;">Deluxe Laundry</h1>
 
@@ -104,19 +121,30 @@
 
                 <div class="row">
                     <div class="col-sm-10 offset-sm-1 d-flex gap-3">
+<<<<<<< HEAD
                         <a href="<?= site_url('login'); ?>" class="btn btn-primary flex-fill">
                             Login Admin
                         </a>
                         <a href="<?= site_url('tracking'); ?>" class="btn btn-info flex-fill">
+=======
+                        <a href="<?= site_url('login'); ?>" class="btn btn-primary py-3 flex-grow-1 text-center d-flex align-items-center justify-content-center">
+                            Login Admin
+                        </a>
+                        <a href="<?= site_url('tracking'); ?>" class="btn btn-info py-3 flex-grow-1 text-white text-center d-flex align-items-center justify-content-center" style="background-color: #4cc7e4; border: none;">
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                             Cek Status Laundry
                         </a>
                     </div>
                 </div>
 
+<<<<<<< HEAD
             </div> 
         </div> 
     </div> 
 </div> 
 
 </body>
+=======
+            </div> </div> </div> </div> </body>
+>>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
 </html>
