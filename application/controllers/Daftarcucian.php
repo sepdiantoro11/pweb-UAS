@@ -31,10 +31,7 @@ class Daftarcucian extends CI_Controller {
             redirect('daftarcucian');
         }
 
-        // Update status dulu ke 'Diambil' sebelum diarsip
         $this->Daftarcucian_model->updateStatus($id, 'Diambil');
-
-        // Pindahkan ke riwayat
         $this->Daftarcucian_model->moveToRiwayat($id);
 
         $this->session->set_flashdata('swal', array(
@@ -91,7 +88,6 @@ class Daftarcucian extends CI_Controller {
             $berat    = $this->input->post('berat', TRUE);
             $no_resi  = $this->input->post('no_resi', TRUE);
 
-            // Update data pelanggan
             $data_pelanggan = array(
                 'nama_pelanggan' => $nama,
                 'nomor_wa'       => $nomor_hp,
@@ -99,12 +95,10 @@ class Daftarcucian extends CI_Controller {
             );
             $this->Daftarcucian_model->updatePelanggan($cucian['id_pelanggan'], $data_pelanggan);
 
-            // Hitung ulang total biaya
             $paket = $this->Daftarcucian_model->get_paket_by_id($id_paket);
             $harga_per_kg = isset($paket['harga_per_kg']) ? $paket['harga_per_kg'] : 0;
             $total_biaya = $berat * $harga_per_kg;
 
-            // Update data cucian
             $data_cucian = array(
                 'id_paket'      => $id_paket,
                 'berat_laundry' => $berat,
@@ -120,5 +114,27 @@ class Daftarcucian extends CI_Controller {
             ));
             redirect('daftarcucian');
         }
+    }
+
+    public function hapus($id) {
+        $cucian = $this->Daftarcucian_model->getById($id);
+        if (!$cucian) {
+            $this->session->set_flashdata('swal', array(
+                'icon'  => 'warning',
+                'title' => 'Tidak Ditemukan!',
+                'text'  => 'Data cucian tidak ditemukan.'
+            ));
+            redirect('daftarcucian');
+        }
+
+        $this->Daftarcucian_model->deleteCucian($id);
+
+        $this->session->set_flashdata('swal', array(
+            'icon'  => 'success',
+            'title' => 'Berhasil!',
+            'text'  => 'Data cucian berhasil dihapus permanen.'
+        ));
+
+        redirect('daftarcucian');
     }
 }
