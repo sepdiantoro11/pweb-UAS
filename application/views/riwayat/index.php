@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deluxe Laundry - Masukkan Data Pelanggan</title>
-    
+    <title>Deluxe Laundry - Riwayat Transaksi</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,10 +26,9 @@
             overflow-x: hidden;
         }
 
-        /* --- Sisi Kiri: Layout Komponen Sidebar --- */
         .sidebar {
             width: 280px;
-            background-color: #002d72; /* Warna dasar biru tua sesuai dengan gambar acuan */
+            background-color: #002d72;
             min-height: 100vh;
             padding: 30px 0;
             display: flex;
@@ -78,11 +77,10 @@
             vertical-align: middle;
         }
 
-
         .sidebar-item.active .sidebar-link {
             background-color: rgba(255, 255, 255, 0.12);
-            border-left: 5px solid #ffffff; 
-            padding-left: 20px; 
+            border-left: 5px solid #ffffff;
+            padding-left: 20px;
         }
 
         .sidebar-link:hover {
@@ -132,79 +130,59 @@
             margin-bottom: 25px;
         }
 
-        .form-card {
+        .table-card {
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid #e2e8f0;
             width: 100%;
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 40px 50px;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .form-group-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-
-        .label-field {
-            font-weight: 600;
-            color: #3b71ca;
-            font-size: 1.05rem;
-            width: 160px;
-            flex-shrink: 0;
-        }
-
-        .input-field {
-            border: 1px solid #b4b4b4;
-            border-radius: 6px;
-            padding: 9px 15px;
-            font-size: 1rem;
-            color: #333333;
-            width: 100%;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .input-field:focus {
-            border-color: #3b71ca;
-            box-shadow: 0 0 0 0.2rem rgba(59, 113, 202, 0.25);
-            outline: 0;
-        }
-
-        .button-action-area {
-            display: flex;
-            justify-content: center;
-            margin-top: 35px;
-            width: 100%;
-        }
-
-        .btn-simpan {
-            background-color: #4ec2e0;
+        .table-card .card-header {
+            background-color: #002d72;
             color: #ffffff;
-            font-weight: 500;
+            padding: 15px 25px;
+            font-weight: 600;
             font-size: 1.1rem;
-            padding: 8px 50px;
-            border-radius: 8px;
-            border: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .btn-simpan:hover {
-            background-color: #3aaecb;
-            transform: translateY(-1px);
+        .table {
+            margin-bottom: 0;
         }
 
-        .error-validation {
-            color: #dc3545;
-            font-size: 0.85rem;
-            margin-top: -15px;
+        .table thead th {
+            background-color: #f8f9fc;
+            color: #002d72;
+            font-weight: 600;
+            border-bottom: 2px solid #e2e8f0;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fc;
+        }
+
+        .table-empty {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+        }
+
+        .table-empty i {
+            font-size: 3rem;
+            display: block;
             margin-bottom: 15px;
-            padding-left: 160px;
-            width: 100%;
+            color: #ccc;
         }
 
         @media (max-width: 991px) {
@@ -235,22 +213,6 @@
             .main-content {
                 padding: 20px 15px;
             }
-            .form-card {
-                padding: 25px 20px;
-            }
-            .form-group-row {
-                flex-direction: column;
-                align-items: flex-start;
-                margin-bottom: 15px;
-            }
-            .label-field {
-                width: 100%;
-                margin-bottom: 5px;
-            }
-            .error-validation {
-                padding-left: 0;
-                margin-top: -10px;
-            }
         }
     </style>
 </head>
@@ -261,7 +223,7 @@
             <img src="<?php echo base_url('assets/images/logo1.png'); ?>" alt="Logo Deluxe Laundry">
         </div>
         <ul class="sidebar-menu">
-            <li class="sidebar-item active">
+            <li class="sidebar-item">
                 <a href="<?php echo site_url('pelanggan'); ?>" class="sidebar-link">
                     <i class="bi bi-person-circle"></i> Pelanggan
                 </a>
@@ -271,7 +233,7 @@
                     <i class="bi bi-mailbox"></i> Daftar Cucian
                 </a>
             </li>
-            <li class="sidebar-item">
+            <li class="sidebar-item active">
                 <a href="<?php echo site_url('riwayat'); ?>" class="sidebar-link">
                     <i class="bi bi-clock-history"></i> Riwayat
                 </a>
@@ -285,73 +247,86 @@
             <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
         </div>
 
-        <h2 class="page-title">Masukkan Data Pelanggan</h2>
+        <h2 class="page-title">Riwayat Transaksi Laundry</h2>
 
         <?php if($this->session->flashdata('message')): ?>
-            <div style="max-width: 850px; width: 100%; margin: 0 auto 15px auto;">
+            <div style="max-width: 100%; width: 100%; margin: 0 auto 15px auto;">
                 <?php echo $this->session->flashdata('message'); ?>
             </div>
         <?php endif; ?>
 
-        <div class="form-card">
-            <?php echo form_open('pelanggan'); ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="nama">Nama:</label>
-                    <input type="text" class="input-field" id="nama" name="nama" value="<?php echo set_value('nama'); ?>" autocomplete="off">
-                </div>
-                <?php if(form_error('nama')): ?>
-                    <div class="error-validation"><?php echo form_error('nama', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="nomor_hp">Nomor HP:</label>
-                    <input type="text" class="input-field" id="nomor_hp" name="nomor_hp" value="<?php echo set_value('nomor_hp'); ?>" autocomplete="off">
-                </div>
-                <?php if(form_error('nomor_hp')): ?>
-                    <div class="error-validation"><?php echo form_error('nomor_hp', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="alamat">Alamat:</label>
-                    <input type="text" class="input-field" id="alamat" name="alamat" value="<?php echo set_value('alamat'); ?>" autocomplete="off">
-                </div>
-                <?php if(form_error('alamat')): ?>
-                    <div class="error-validation"><?php echo form_error('alamat', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="paket">Paket:</label>
-                    <select class="input-field form-select" id="paket" name="paket">
-                        <option value="">Pilih Paket Laundry</option>
-                        <?php foreach($paket_list as $pk): ?>
-                            <option value="<?php echo $pk['id_paket']; ?>" <?php echo set_select('paket', $pk['id_paket']); ?>>
-                                <?php echo $pk['nama_paket']; ?> (Rp <?php echo number_format($pk['harga_per_kg'], 0, ',', '.'); ?>/Kg)
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <?php if(form_error('paket')): ?>
-                    <div class="error-validation"><?php echo form_error('paket', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="form-group-row">
-                    <label class="label-field" for="berat">Berat Cucian:</label>
-                    <input type="text" class="input-field" id="berat" name="berat" value="<?php echo set_value('berat'); ?>" placeholder="Contoh: 3 atau 3.5" autocomplete="off">
-                </div>
-                <?php if(form_error('berat')): ?>
-                    <div class="error-validation"><?php echo form_error('berat', '', ''); ?></div>
-                <?php endif; ?>
-
-                <div class="button-action-area">
-                    <button type="submit" class="btn-simpan">Simpan</button>
-                </div>
-
-            <?php echo form_close(); ?>
+        <div class="table-card">
+            <div class="card-header">
+                <i class="bi bi-clock-history me-2"></i>Data Riwayat Transaksi
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID Riwayat</th>
+                            <th>ID Cucian</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Nama Paket</th>
+                            <th>Total Biaya</th>
+                            <th>Status</th>
+                            <th>Tanggal Diambil</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($riwayat)): ?>
+                            <?php $no = 1; ?>
+                            <?php foreach ($riwayat as $r): ?>
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $r['id_riwayat']; ?></td>
+                                    <td><?php echo $r['id_cucian']; ?></td>
+                                    <td><?php echo htmlspecialchars($r['nama_pelanggan_arsip']); ?></td>
+                                    <td><?php echo htmlspecialchars($r['nama_paket_arsip']); ?></td>
+                                    <td>Rp <?php echo number_format($r['total_biaya_final'], 0, ',', '.'); ?></td>
+                                    <td>
+                                        <?php if ($r['status_cucian'] == 'Selesai Dicuci'): ?>
+                                            <span class="badge bg-success">Selesai Dicuci</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-warning text-dark">Diproses</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?php echo date('d-m-Y H:i', strtotime($r['tgl_diambil'])); ?></td>
+                                    <td>
+                                        <a href="<?php echo site_url('riwayat/ubah/' . $r['id_riwayat']); ?>" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="9">
+                                    <div class="table-empty">
+                                        <i class="bi bi-inbox"></i>
+                                        Belum ada data riwayat transaksi.
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php if($this->session->flashdata('swal')): ?>
+            Swal.fire({
+                icon: '<?php echo $this->session->flashdata('swal')['icon']; ?>',
+                title: '<?php echo $this->session->flashdata('swal')['title']; ?>',
+                text: '<?php echo $this->session->flashdata('swal')['text']; ?>'
+            });
+        <?php endif; ?>
+    </script>
 </body>
 </html>
