@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
@@ -73,8 +75,6 @@
         .sidebar-link i {
             font-size: 1.5rem;
             margin-right: 20px;
-            display: inline-block;
-            vertical-align: middle;
         }
 
         .sidebar-item.active .sidebar-link {
@@ -92,34 +92,20 @@
             flex-grow: 1;
             background: linear-gradient(135deg, #ffffff 60%, #46fde1 100%);
             padding: 30px 40px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
         }
 
         .content-header {
             display: flex;
             justify-content: flex-end;
-            align-items: center;
             margin-bottom: 20px;
-            width: 100%;
         }
 
         .btn-logout {
             background-color: #4ec2e0;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 1rem;
+            color: #fff;
             padding: 8px 30px;
             border-radius: 8px;
-            border: none;
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-logout:hover {
-            background-color: #3aaecb;
-            color: #ffffff;
         }
 
         .page-title {
@@ -131,206 +117,163 @@
         }
 
         .table-card {
-            background-color: #ffffff;
+            background: #fff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e2e8f0;
-            width: 100%;
-            padding: 0;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
-        .table-card .card-header {
+        .card-header {
             background-color: #002d72;
-            color: #ffffff;
+            color: #fff;
             padding: 15px 25px;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .table {
-            margin-bottom: 0;
-        }
-
-        .table thead th {
-            background-color: #f8f9fc;
-            color: #002d72;
-            font-weight: 600;
-            border-bottom: 2px solid #e2e8f0;
-            padding: 12px 15px;
-            font-size: 0.95rem;
-        }
-
-        .table tbody td {
-            padding: 12px 15px;
-            vertical-align: middle;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem;
-        }
-
-        .table tbody tr:hover {
-            background-color: #f8f9fc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .table-empty {
             text-align: center;
-            padding: 40px 20px;
+            padding: 40px;
             color: #888;
-        }
-
-        .table-empty i {
-            font-size: 3rem;
-            display: block;
-            margin-bottom: 15px;
-            color: #ccc;
-        }
-
-        @media (max-width: 991px) {
-            body {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-                min-height: auto;
-                padding: 15px 0 0 0;
-            }
-            .sidebar-brand {
-                padding-bottom: 15px;
-            }
-            .sidebar-menu {
-                display: flex;
-                justify-content: center;
-            }
-            .sidebar-item {
-                width: auto;
-                margin-bottom: 0;
-            }
-            .sidebar-item.active .sidebar-link {
-                border-left: none;
-                border-bottom: 4px solid #ffffff;
-                padding-left: 20px;
-            }
-            .main-content {
-                padding: 20px 15px;
-            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-brand">
-            <img src="<?php echo base_url('assets/images/logo1.png'); ?>" alt="Logo Deluxe Laundry">
-        </div>
-        <ul class="sidebar-menu">
-            <li class="sidebar-item">
-                <a href="<?php echo site_url('pelanggan'); ?>" class="sidebar-link">
-                    <i class="bi bi-person-circle"></i> Pelanggan
-                </a>
-            </li>
-            <li class="sidebar-item">
-                <a href="<?php echo site_url('daftarcucian'); ?>" class="sidebar-link">
-                    <i class="bi bi-mailbox"></i> Daftar Cucian
-                </a>
-            </li>
-            <li class="sidebar-item active">
-                <a href="<?php echo site_url('riwayat'); ?>" class="sidebar-link">
-                    <i class="bi bi-clock-history"></i> Riwayat
-                </a>
-            </li>
-        </ul>
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <img src="<?php echo base_url('assets/images/logo1.png'); ?>">
     </div>
 
-    <div class="main-content">
+    <ul class="sidebar-menu">
+        <li class="sidebar-item">
+            <a href="<?php echo site_url('pelanggan'); ?>" class="sidebar-link">
+                <i class="bi bi-person-circle"></i> Pelanggan
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="<?php echo site_url('daftarcucian'); ?>" class="sidebar-link">
+                <i class="bi bi-mailbox"></i> Daftar Cucian
+            </a>
+        </li>
+        <li class="sidebar-item active">
+            <a href="<?php echo site_url('riwayat'); ?>" class="sidebar-link">
+                <i class="bi bi-clock-history"></i> Riwayat
+            </a>
+        </li>
+    </ul>
+</div>
 
-        <div class="content-header">
-            <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
-        </div>
+<div class="main-content">
 
-        <h2 class="page-title">Riwayat Transaksi Laundry</h2>
+    <div class="content-header">
+        <a href="<?php echo site_url('auth/logout'); ?>" class="btn-logout">Logout</a>
+    </div>
 
-        <?php if($this->session->flashdata('message')): ?>
-            <div style="max-width: 100%; width: 100%; margin: 0 auto 15px auto;">
-                <?php echo $this->session->flashdata('message'); ?>
-            </div>
-        <?php endif; ?>
+    <h2 class="page-title">Riwayat Transaksi Laundry</h2>
 
-        <div class="table-card">
-            <div class="card-header">
+    <div class="table-card">
+
+        <div class="card-header">
+            <div>
                 <i class="bi bi-clock-history me-2"></i>Data Riwayat Transaksi
             </div>
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
+
+            <form action="<?php echo site_url('riwayat'); ?>" method="GET" class="d-flex" style="gap:8px;">
+                <input type="text"
+                    name="search"
+                    class="form-control form-control-sm"
+                    style="width:200px; border-radius:6px;"
+                    placeholder="Cari riwayat..."
+                    value="<?php echo isset($search) ? $search : ''; ?>">
+
+                <button class="btn btn-sm btn-light" type="submit">
+                    <i class="bi bi-search"></i>
+                </button>
+
+                <?php if(!empty($search)): ?>
+                    <a href="<?php echo site_url('riwayat'); ?>" class="btn btn-sm btn-light">
+                        <i class="bi bi-x-circle"></i>
+                    </a>
+                <?php endif; ?>
+            </form>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>ID Riwayat</th>
+                    <th>ID Cucian</th>
+                    <th>No Resi</th>
+                    <th>Nomor HP</th>
+                    <th>Nama</th>
+                    <th>Paket</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Tanggal</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php if(!empty($riwayat)): ?>
+                    <?php foreach($riwayat as $r): ?>
                         <tr>
-                            <th>No</th>
-                            <th>ID Riwayat</th>
-                            <th>ID Cucian</th>
-                            <th>No. Resi</th>
-<<<<<<< HEAD
-                            <th>Nomor HP</th>
-=======
->>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
-                            <th>Nama Pelanggan</th>
-                            <th>Nama Paket</th>
-                            <th>Total Biaya</th>
-                            <th>Status</th>
-                            <th>Tanggal Diambil</th>
+                            <td><?= $r['id_riwayat'] ?></td>
+                            <td><?= $r['id_cucian'] ?></td>
+                            <td><?= $r['no_resi'] ?></td>
+                            <td><?= $r['nomor_wa_arsip'] ?></td>
+                            <td><?= $r['nama_pelanggan_arsip'] ?></td>
+                            <td><?= $r['nama_paket_arsip'] ?></td>
+                            <td>Rp <?= number_format($r['total_biaya_final']) ?></td>
+                            <td><span class="badge bg-success">Selesai</span></td>
+                            <td><?= date('d-m-Y', strtotime($r['tgl_diambil'])) ?></td>
+                            <td>
+                                <a href="<?= site_url('riwayat/hapus/'.$r['id_riwayat']) ?>" class="btn btn-danger btn-sm btn-hapus">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php if (!empty($riwayat)): ?>
-                            <?php $no = 1; ?>
-                            <?php foreach ($riwayat as $r): ?>
-                                <tr>
-                                    <td><?php echo $no++; ?></td>
-                                    <td><?php echo $r['id_riwayat']; ?></td>
-                                    <td><?php echo $r['id_cucian']; ?></td>
-                                    <td><?php echo htmlspecialchars($r['no_resi']); ?></td>
-<<<<<<< HEAD
-                                    <td><?php echo htmlspecialchars($r['nomor_wa_arsip']); ?></td>
-=======
->>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
-                                    <td><?php echo htmlspecialchars($r['nama_pelanggan_arsip']); ?></td>
-                                    <td><?php echo htmlspecialchars($r['nama_paket_arsip']); ?></td>
-                                    <td>Rp <?php echo number_format($r['total_biaya_final'], 0, ',', '.'); ?></td>
-                                    <td>
-                                        <?php if ($r['status_cucian'] == 'Selesai Dicuci'): ?>
-                                            <span class="badge bg-success">Selesai Dicuci</span>
-                                        <?php else: ?>
-                                            <span class="badge bg-warning text-dark">Diproses</span>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?php echo date('d-m-Y H:i', strtotime($r['tgl_diambil'])); ?></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <tr>
-                                <td colspan="9">
-                                    <div class="table-empty">
-                                        <i class="bi bi-inbox"></i>
-                                        Belum ada data riwayat transaksi.
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endif; ?>
-                    </tbody>
-                </table>
-            </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="10">
+                            <div class="table-empty">Belum ada data riwayat</div>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                </tbody>
+            </table>
         </div>
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        <?php if($this->session->flashdata('swal')): ?>
-            Swal.fire({
-                icon: '<?php echo $this->session->flashdata('swal')['icon']; ?>',
-                title: '<?php echo $this->session->flashdata('swal')['title']; ?>',
-                text: '<?php echo $this->session->flashdata('swal')['text']; ?>'
-            });
-        <?php endif; ?>
-    </script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+document.querySelectorAll('.btn-hapus').forEach(btn=>{
+    btn.addEventListener('click', function(e){
+        e.preventDefault();
+        const href = this.href;
+
+        Swal.fire({
+            title: 'Hapus data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Hapus'
+        }).then((res)=>{
+            if(res.isConfirmed){
+                window.location = href;
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

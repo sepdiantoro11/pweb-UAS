@@ -94,6 +94,6 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('nama_kasir');
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('login');
-        redirect('auth');
+        redirect('/');
     }
 }

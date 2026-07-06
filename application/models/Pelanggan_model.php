@@ -30,11 +30,13 @@ class Pelanggan_model extends CI_Model {
     public function generate_no_resi() {
         $prefix = 'LND-' . date('Ymd') . '-';
 
-        $this->db->select('no_resi');
-        $this->db->like('no_resi', $prefix, 'after');
-        $this->db->order_by('no_resi', 'DESC');
-        $this->db->limit(1);
-        $query = $this->db->get('daftar_cucian');
+        // Cari nomor resi terakhir dari kedua tabel (daftar_cucian dan riwayat)
+        $sql = "(SELECT no_resi FROM daftar_cucian WHERE no_resi LIKE ?)
+                UNION
+                (SELECT no_resi FROM riwayat WHERE no_resi LIKE ?)
+                ORDER BY no_resi DESC LIMIT 1";
+
+        $query = $this->db->query($sql, array($prefix . '%', $prefix . '%'));
         $last = $query->row_array();
 
         if ($last && !empty($last['no_resi'])) {
@@ -46,5 +48,14 @@ class Pelanggan_model extends CI_Model {
         }
 
         return $prefix . $new_seq;
+    }
+
+    public function cekResiExists($no_resi) {
+        $sql = "(SELECT no_resi FROM daftar_cucian WHERE no_resi = ?)
+                UNION
+                (SELECT no_resi FROM riwayat WHERE no_resi = ?)
+                LIMIT 1";
+        $query = $this->db->query($sql, array($no_resi, $no_resi));
+        return $query->num_rows() > 0;
     }
 }

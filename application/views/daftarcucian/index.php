@@ -133,7 +133,7 @@
         .table-card {
             background-color: #ffffff;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.1);
             border: 1px solid #e2e8f0;
             width: 100%;
             padding: 0;
@@ -159,11 +159,14 @@
             border-bottom: 2px solid #e2e8f0;
             padding: 12px 15px;
             font-size: 0.95rem;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .table tbody td {
             padding: 12px 15px;
             vertical-align: middle;
+            text-align: center;
             border-bottom: 1px solid #f0f0f0;
             font-size: 0.95rem;
         }
@@ -172,6 +175,7 @@
             background-color: #f8f9fc;
         }
 
+        /* Vanilla CSS Custom Component untuk State Kosong */
         .table-empty {
             text-align: center;
             padding: 40px 20px;
@@ -291,10 +295,7 @@
                         <tr>
                             <th>No</th>
                             <th>No. Resi</th>
-<<<<<<< HEAD
                             <th>Nomor HP</th>
-=======
->>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                             <th>Nama Pelanggan</th>
                             <th>Nama Paket</th>
                             <th>Kasir</th>
@@ -312,25 +313,22 @@
                                 <tr>
                                     <td><?php echo $no++; ?></td>
                                     <td><?php echo htmlspecialchars($c['no_resi']); ?></td>
-<<<<<<< HEAD
                                     <td><?php echo htmlspecialchars($c['nomor_wa']); ?></td>
-=======
->>>>>>> 1a678dd8bf37ac519780b69f9099dca1443eee6b
                                     <td><?php echo htmlspecialchars($c['nama_pelanggan']); ?></td>
                                     <td><?php echo htmlspecialchars($c['nama_paket']); ?></td>
                                     <td><?php echo htmlspecialchars($c['nama_kasir']); ?></td>
                                     <td><?php echo number_format($c['berat_laundry'], 2, ',', '.'); ?></td>
                                     <td>Rp <?php echo number_format($c['total_biaya'], 0, ',', '.'); ?></td>
-                                    <td><?php echo date('d-m-Y H:i', strtotime($c['tgl_masuk'])); ?></td>
+                                    <td><?php echo date('d-m-Y', strtotime($c['tgl_masuk'])); ?></td>
                                     <td>
                                         <?php
                                         $badge_class = '';
                                         switch ($c['status_cucian']) {
-                                            case 'Diproses':  $badge_class = 'bg-secondary';  break;
+                                            case 'Diproses':  $badge_class = 'bg-warning text-dark'; break;
                                             case 'Dicuci':    $badge_class = 'bg-info text-dark'; break;
                                             case 'Disetrika': $badge_class = 'bg-warning text-dark'; break;
-                                            case 'Selesai':   $badge_class = 'bg-primary'; break;
-                                            case 'Diambil':   $badge_class = 'bg-success'; break;
+                                            case 'Selesai':   $badge_class = 'bg-success'; break;
+                                            case 'Diambil':   $badge_class = 'bg-secondary'; break;
                                             default:          $badge_class = 'bg-secondary';
                                         }
                                         ?>
@@ -339,22 +337,23 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>"
-                                           class="btn btn-sm btn-primary">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <a href="#" class="btn-proses btn-selesai"
-                                           data-id="<?php echo $c['id_cucian']; ?>"
-                                           data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>">
-                                            <i class="bi bi-check-circle"></i> Selesai
-                                        </a>
+                                        <div class="d-flex" style="gap: 5px;">
+                                            <a href="<?php echo site_url('daftarcucian/edit/' . $c['id_cucian']); ?>" class="btn btn-sm btn-primary" title="Edit">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <a href="#" class="btn-proses btn-selesai" data-id="<?php echo $c['id_cucian']; ?>" data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>">
+                                                Selesai
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger btn-hapus" data-id="<?php echo $c['id_cucian']; ?>" data-nama="<?php echo htmlspecialchars($c['nama_pelanggan']); ?>" title="Hapus">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <tr>
-                                <td colspan="10">
-                                    <div class="table-empty">
+                                <td colspan="11"> <div class="table-empty">
                                         <i class="bi bi-inbox"></i>
                                         Belum ada data cucian aktif.
                                     </div>
@@ -381,8 +380,9 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.btn-selesai');
-            buttons.forEach(function(btn) {
+            // Logika Klik Selesai
+            const buttonsSelesai = document.querySelectorAll('.btn-selesai');
+            buttonsSelesai.forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     const id = this.getAttribute('data-id');
@@ -400,6 +400,31 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = '<?php echo site_url('daftarcucian/ubahStatus/'); ?>' + id;
+                        }
+                    });
+                });
+            });
+
+            // Logika Klik Hapus (Fitur Baru)
+            const buttonsHapus = document.querySelectorAll('.btn-hapus');
+            buttonsHapus.forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.getAttribute('data-id');
+                    const nama = this.getAttribute('data-nama');
+
+                    Swal.fire({
+                        title: 'Hapus Data?',
+                        text: 'Apakah kamu yakin ingin menghapus data cucian ' + nama + '? Tindakan ini tidak bisa dibatalkan.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#dc3545',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '<?php echo site_url('daftarcucian/hapus/'); ?>' + id;
                         }
                     });
                 });

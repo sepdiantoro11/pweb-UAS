@@ -28,17 +28,17 @@ class Pelanggan extends CI_Controller {
 
         if ($this->form_validation->run() == FALSE) {
             $data['paket_list'] = $this->Pelanggan_model->get_all_paket();
+            $data['no_resi'] = $this->Pelanggan_model->generate_no_resi();
             $this->load->view('pelanggan/index', $data);
         } else {
             $nama      = $this->input->post('nama', TRUE);
             $nomor_hp  = $this->input->post('nomor_hp', TRUE);
             $alamat    = $this->input->post('alamat', TRUE);
             $id_paket  = $this->input->post('paket', TRUE);
-            $berat     = $this->input->post('berat', TRUE);
-            $no_resi   = $this->input->post('no_resi', TRUE);
+            $berat     = str_replace(',', '.', $this->input->post('berat', TRUE));
 
             $pelanggan = $this->Pelanggan_model->get_pelanggan_by_creds($nama, $nomor_hp);
-            
+
             if ($pelanggan) {
                 $id_pelanggan = $pelanggan['id_pelanggan'];
             } else {
@@ -62,8 +62,12 @@ class Pelanggan extends CI_Controller {
 
             $status_cucian = 'Diproses';
 
-            if (empty($no_resi)) {
-                $no_resi = $this->Pelanggan_model->generate_no_resi();
+            $no_resi = $this->Pelanggan_model->generate_no_resi();
+
+            // Pastikan no_resi belum ada di riwayat (keamanan ganda)
+            if ($this->Pelanggan_model->cekResiExists($no_resi)) {
+                $prefix = 'LND-' . date('Ymd') . '-';
+                $no_resi = $prefix . str_pad(mt_rand(100, 999), 3, '0', STR_PAD_LEFT);
             }
 
             $data_cucian = array(
