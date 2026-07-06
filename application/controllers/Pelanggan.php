@@ -63,8 +63,7 @@ class Pelanggan extends CI_Controller {
             $status_cucian = 'Diproses';
 
             $no_resi = $this->Pelanggan_model->generate_no_resi();
-
-            // Pastikan no_resi belum ada di riwayat (keamanan ganda)
+            
             if ($this->Pelanggan_model->cekResiExists($no_resi)) {
                 $prefix = 'LND-' . date('Ymd') . '-';
                 $no_resi = $prefix . str_pad(mt_rand(100, 999), 3, '0', STR_PAD_LEFT);

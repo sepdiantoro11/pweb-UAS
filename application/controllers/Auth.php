@@ -10,9 +10,7 @@ class Auth extends CI_Controller {
     }
 
     public function index() {
-        // if ($this->session->userdata('login')) {
-        //     redirect('dashboard');
-        // }
+
         $action = $this->input->post('action');
 
         if ($action === 'daftar') {
@@ -25,7 +23,6 @@ class Auth extends CI_Controller {
     }
 
     private function _proses_daftar() {
-        // Set aturan validasi form
         $this->form_validation->set_rules('nama', 'Nama', 'required|trim');
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');

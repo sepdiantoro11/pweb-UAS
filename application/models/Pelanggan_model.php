@@ -29,8 +29,7 @@ class Pelanggan_model extends CI_Model {
 
     public function generate_no_resi() {
         $prefix = 'LND-' . date('Ymd') . '-';
-
-        // Cari nomor resi terakhir dari kedua tabel (daftar_cucian dan riwayat)
+        
         $sql = "(SELECT no_resi FROM daftar_cucian WHERE no_resi LIKE ?)
                 UNION
                 (SELECT no_resi FROM riwayat WHERE no_resi LIKE ?)
